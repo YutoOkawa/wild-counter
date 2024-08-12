@@ -7,6 +7,20 @@ class WildCounter:
 
     def printStandardFormat(self):
         print("スタンダードフォーマット:", self.symbol)
+    
+    def inputNumber(self):
+        while True:
+            try:
+                number = int(input())
+            except ValueError as err:
+                print(err)
+                print("数字を入力してください")
+                continue
+            break
+        return number
+
+    def inputString(self):
+        return input()
 
     def inputCard(self, card, deck):
         if card in self.cardList:
@@ -16,3 +30,4 @@ class WildCounter:
 
     def start(self):
         print("WildCounter started")
+        
