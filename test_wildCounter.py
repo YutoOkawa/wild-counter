@@ -10,7 +10,7 @@ class WildCounterTest(unittest.TestCase):
         expectedDeck = ["deck"]
 
         # WHEN
-        wc.inputCard("test_name", "test_symbol", 4, "deck")
+        wc.inputCard(expectedCard, "deck")
 
         # THEN
         assert wc.cardList[expectedCard] == expectedDeck
@@ -21,8 +21,8 @@ class WildCounterTest(unittest.TestCase):
         card = Card("test_name", "test_symbol", 4)
         
         # WHEN
-        wc.inputCard("test_name", "test_symbol", 4, "deck")
-        wc.inputCard("test_name", "test_symbol", 4, "deck2")
+        wc.inputCard(card, "deck")
+        wc.inputCard(card, "deck2")
 
         # THEN
         assert len(wc.cardList) == 1

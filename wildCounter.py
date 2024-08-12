@@ -8,8 +8,7 @@ class WildCounter:
     def printStandardFormat(self):
         print("スタンダードフォーマット:", self.symbol)
 
-    def inputCard(self, name, symbol, count, deck):
-        card = Card(name, symbol, count)
+    def inputCard(self, card, deck):
         if card in self.cardList:
             self.cardList[card].append(deck)
         else:
