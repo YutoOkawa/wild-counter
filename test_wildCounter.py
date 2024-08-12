@@ -32,7 +32,7 @@ class WildCounterTest(unittest.TestCase):
         WildCounterTest.stub_stdouts(unittest)
 
         # WHEN
-        number = wc.inputNumber()
+        number = wc.inputNumber("test prompt")
 
         # THEN
         assert number == expectedNumber
@@ -45,7 +45,7 @@ class WildCounterTest(unittest.TestCase):
         WildCounterTest.stub_stdouts(unittest)
 
         # WHEN
-        string = wc.inputString()
+        string = wc.inputString("test prompt")
 
         # THEN
         assert string == expectedString

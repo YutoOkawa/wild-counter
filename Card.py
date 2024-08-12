@@ -1,4 +1,5 @@
 class Card:
+    # TODO: カード枚数もカードクラスから隔離したい
     def __init__(self, name, symbol, count):
         self.name = name
         self.symbol = symbol
@@ -9,3 +10,6 @@ class Card:
 
     def __hash__(self):
         return hash((self.name, self.symbol, self.count))
+    
+    def __str__(self):
+        return f"Card({self.name}, {self.symbol}, {self.count})"

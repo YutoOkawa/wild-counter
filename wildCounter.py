@@ -1,4 +1,5 @@
 from Card import Card
+import pprint
 
 class WildCounter:
     def __init__(self):
@@ -8,8 +9,9 @@ class WildCounter:
     def printStandardFormat(self):
         print("スタンダードフォーマット:", self.symbol)
     
-    def inputNumber(self):
+    def inputNumber(self, prompt):
         while True:
+            print(prompt, end="")
             try:
                 number = int(input())
             except ValueError as err:
@@ -19,7 +21,8 @@ class WildCounter:
             break
         return number
 
-    def inputString(self):
+    def inputString(self, prompt):
+        print(prompt, end="")
         return input()
 
     def inputCard(self, card, deck):
@@ -28,6 +31,22 @@ class WildCounter:
         else:
             self.cardList[card] = [deck]
 
+    def printCardList(self):
+        for key in self.cardList:
+            print(key, self.cardList[key])
+
     def start(self):
         print("WildCounter started")
-        
+        while True:
+            # TODO: validation
+            name = self.inputString("カード名を入力してください: ")
+            symbol = self.inputString("シンボルを入力してください: ")
+            self.printStandardFormat()
+            count = self.inputNumber("枚数を入力してください: ")
+            card = Card(name, symbol, count)
+            deck = self.inputString("デッキ名を入力してください: ")
+            self.inputCard(card, deck)
+            if self.inputString("カードを追加しました\n追加を続けますか？(y/n)") == "n":
+                break
+        print("WildCounter finished")
+        self.printCardList()
