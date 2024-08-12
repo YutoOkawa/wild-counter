@@ -1,8 +1,8 @@
 from Card import Card
 
 class WildCounter:
-    cardList = {}
     def __init__(self):
+        self.cardList = {}
         self.symbol = ["DMU", "BRO", "ONE", "MOM", "MAT", "WOE", "LCI", "MKM", "OTJ", "BIG", "BLB"]
 
     def printStandardFormat(self):
@@ -10,7 +10,10 @@ class WildCounter:
 
     def inputCard(self, name, symbol, count, deck):
         card = Card(name, symbol, count)
-        self.cardList[card] = [deck]
+        if card in self.cardList:
+            self.cardList[card].append(deck)
+        else:
+            self.cardList[card] = [deck]
 
     def start(self):
         print("WildCounter started")
