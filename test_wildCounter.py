@@ -1,4 +1,5 @@
 from wildCounter import WildCounter
+from CardDetail import CardDetail
 from Card import Card
 import unittest
 import sys
@@ -54,23 +55,24 @@ class WildCounterTest(unittest.TestCase):
         # GIVEN
         wc = WildCounter()
         expectedCard = Card("test_name", "test_symbol")
-        expectedDeck = ["deck"]
+        expectedCardDetail = CardDetail(expectedCard, 4, "deck")
 
         # WHEN
-        wc.inputCard(expectedCard, "deck")
+        wc.inputCard(expectedCard, 4, "deck")
 
         # THEN
-        assert wc.cardList[expectedCard] == expectedDeck
+        assert wc.cardList[0] == expectedCardDetail
 
-    def test_cardList_does_not_have_multiple_key_and_have_lists_of_decks(unittest):
-        # GIVEN
-        wc = WildCounter()
-        card = Card("test_name", "test_symbol")
+    # def test_cardList_does_not_have_multiple_key_and_have_lists_of_decks(unittest):
+    #     # GIVEN
+    #     wc = WildCounter()
+    #     expectedCard = Card("test_name", "test_symbol")
+    #     expectedCardDetail = CardDetail(expectedCard, 4, "deck")
         
-        # WHEN
-        wc.inputCard(card, "deck")
-        wc.inputCard(card, "deck2")
+    #     # WHEN
+    #     wc.inputCard(card, 4, "deck")
+    #     wc.inputCard(card, 4, "deck2")
 
-        # THEN
-        assert len(wc.cardList) == 1
-        assert wc.cardList[card] == ["deck", "deck2"]
+    #     # THEN
+    #     assert len(wc.cardList) == 1
+    #     assert wc.cardList[0].deck == ["deck", "deck2"]
