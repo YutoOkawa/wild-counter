@@ -26,6 +26,8 @@ class WildCounter:
         return input()
 
     def inputCard(self, card, deck):
+        # TODO: カードクラス,枚数,デッキ名を要素に持つクラスを持つようにする
+        # TODO: 入力された枚数が現在ある値よりも大きい場合は値を更新する(これは更新クラスメソッドを生やして良いかも)
         if card in self.cardList:
             self.cardList[card].append(deck)
         else:
@@ -43,7 +45,7 @@ class WildCounter:
             symbol = self.inputString("シンボルを入力してください: ")
             self.printStandardFormat()
             count = self.inputNumber("枚数を入力してください: ")
-            card = Card(name, symbol, count)
+            card = Card(name, symbol)
             deck = self.inputString("デッキ名を入力してください: ")
             self.inputCard(card, deck)
             if self.inputString("カードを追加しました\n追加を続けますか？(y/n)") == "n":

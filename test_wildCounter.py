@@ -53,7 +53,7 @@ class WildCounterTest(unittest.TestCase):
     def test_inputCard(unittest):
         # GIVEN
         wc = WildCounter()
-        expectedCard = Card("test_name", "test_symbol", 4)
+        expectedCard = Card("test_name", "test_symbol")
         expectedDeck = ["deck"]
 
         # WHEN
@@ -65,7 +65,7 @@ class WildCounterTest(unittest.TestCase):
     def test_cardList_does_not_have_multiple_key_and_have_lists_of_decks(unittest):
         # GIVEN
         wc = WildCounter()
-        card = Card("test_name", "test_symbol", 4)
+        card = Card("test_name", "test_symbol")
         
         # WHEN
         wc.inputCard(card, "deck")
