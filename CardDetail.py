@@ -11,6 +11,9 @@ class CardDetail:
     
     def __hash__(self):
         return hash((self.card, self.count, self.deck))
+    
+    def __str__(self):
+        return f"CardDetail({self.card}, {self.count}, {self.deck})"
 
     def isIncludedCard(self, card):
         return self.card == card

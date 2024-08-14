@@ -62,17 +62,3 @@ class WildCounterTest(unittest.TestCase):
 
         # THEN
         assert wc.cardList[0] == expectedCardDetail
-
-    # def test_cardList_does_not_have_multiple_key_and_have_lists_of_decks(unittest):
-    #     # GIVEN
-    #     wc = WildCounter()
-    #     expectedCard = Card("test_name", "test_symbol")
-    #     expectedCardDetail = CardDetail(expectedCard, 4, "deck")
-        
-    #     # WHEN
-    #     wc.inputCard(card, 4, "deck")
-    #     wc.inputCard(card, 4, "deck2")
-
-    #     # THEN
-    #     assert len(wc.cardList) == 1
-    #     assert wc.cardList[0].deck == ["deck", "deck2"]
