@@ -17,6 +17,13 @@ class WildCounter:
             count += cardDetail.count
         return count
     
+    def calculateSymbolWildCard(self, symbol):
+        count = 0
+        for cardDetail in self.cardList:
+            if cardDetail.card.symbol == symbol:
+                count += cardDetail.count
+        return count
+    
     def inputNumber(self, prompt):
         while True:
             print(prompt, end="")
@@ -64,4 +71,6 @@ class WildCounter:
                 break
         print("WildCounter finished")
         self.printCardList()
-        print("WildCard数:", self.calculateWildCard())
+        print("WildCard総数:", self.calculateWildCard())
+        for symbol in self.symbol:
+            print(symbol, ":", self.calculateSymbolWildCard(symbol))

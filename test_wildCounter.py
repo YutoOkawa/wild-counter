@@ -89,3 +89,16 @@ class WildCounterTest(unittest.TestCase):
         # THEN
         count = wc.calculateWildCard()
         assert count == 5
+
+    def test_calculateSymbolWildCard(unittest):
+        # GIVEN
+        wc = WildCounter()
+        wc.cardList = [CardDetail(Card("test_name", "DMU"), 4, "deck"), CardDetail(Card("test_name", "BRO"), 2, "deck")]
+
+        # WHEN
+        dmuCount = wc.calculateSymbolWildCard("DMU")
+        broCount = wc.calculateSymbolWildCard("BRO")
+
+        # THEN
+        assert dmuCount == 4
+        assert broCount == 2
