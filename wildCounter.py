@@ -27,7 +27,7 @@ class WildCounter:
     def calculateDeckWildCard(self, deck):
         count = 0
         for cardDetail in self.cardList:
-            if cardDetail.deck == deck:
+            if deck in cardDetail.deck:
                 count += cardDetail.count
         return count
     

@@ -4,7 +4,7 @@ class CardDetail:
     def __init__(self, card, count, deck):
         self.card = card
         self.count = count
-        self.deck = deck
+        self.deck = (deck,)
     
     def __eq__(self, other):
         return self.card == other.card and self.count == other.count and self.deck == other.deck
@@ -20,3 +20,6 @@ class CardDetail:
     
     def updateCount(self, count):
         self.count = count
+    
+    def updateDeck(self, deck):
+        self.deck += (deck,)

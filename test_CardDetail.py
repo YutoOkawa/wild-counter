@@ -3,7 +3,7 @@ from CardDetail import CardDetail
 import unittest
 
 class CardDetailTest(unittest.TestCase):
-    def test_CardDetail(self):
+    def test_CardDetail(unittest):
         # GIVEN
         expectedCard = Card("test_name", "test_symbol")
 
@@ -12,9 +12,9 @@ class CardDetailTest(unittest.TestCase):
 
         assert cardDetail.card == expectedCard
         assert cardDetail.count == 4
-        assert cardDetail.deck == "test_deck"
+        assert cardDetail.deck == ("test_deck",)
 
-    def test_CardDetail_isIncludedCard(self):
+    def test_CardDetail_isIncludedCard(unittest):
         # GIVEN
         expectedCard = Card("test_name", "test_symbol")
         cardDetail = CardDetail(Card("test_name", "test_symbol"), 4, "test_deck")
@@ -25,7 +25,7 @@ class CardDetailTest(unittest.TestCase):
         # THEN
         assert isIncluded == True
 
-    def test_CardDetail_updateCount(self):
+    def test_CardDetail_updateCount(unittest):
         # GIVEN
         cardDetail = CardDetail(Card("test_name", "test_symbol"), 2, "deck")
 
@@ -34,3 +34,13 @@ class CardDetailTest(unittest.TestCase):
 
         # THEN
         assert cardDetail.count == 3
+
+    def test_updateDeck(unittest):
+        # GIVEN
+        cardDetail = CardDetail(Card("test_name", "test_symbol"), 2, "deck")
+
+        # WHEN
+        cardDetail.updateDeck("new_deck")
+
+        # THEN
+        assert cardDetail.deck == ("deck", "new_deck")
