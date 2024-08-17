@@ -57,6 +57,7 @@ class WildCounter:
             for cardDetail in self.cardList:
                 if cardDetail.isIncludedCard(card) and cardDetail.count < count:
                     cardDetail.updateCount(count)
+                    cardDetail.updateDeck(deck)
                     return
 
     def printCardList(self):
