@@ -16,11 +16,18 @@ class WildCounter:
         for cardDetail in self.cardList:
             count += cardDetail.count
         return count
-    
+
     def calculateSymbolWildCard(self, symbol):
         count = 0
         for cardDetail in self.cardList:
             if cardDetail.card.symbol == symbol:
+                count += cardDetail.count
+        return count
+
+    def calculateDeckWildCard(self, deck):
+        count = 0
+        for cardDetail in self.cardList:
+            if cardDetail.deck == deck:
                 count += cardDetail.count
         return count
     
