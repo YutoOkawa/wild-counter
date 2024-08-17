@@ -14,21 +14,33 @@ class WildCounter:
     def calculateWildCard(self):
         count = 0
         for cardDetail in self.cardList:
-            count += cardDetail.count
+            deckCount = 0
+            for deck in cardDetail.deck:
+                if deckCount < deck.count:
+                    deckCount = deck.count
+            count += deckCount
         return count
 
     def calculateSymbolWildCard(self, symbol):
         count = 0
         for cardDetail in self.cardList:
-            if cardDetail.card.symbol == symbol:
-                count += cardDetail.count
+            deckCount = 0
+            for deck in cardDetail.deck:
+                if cardDetail.card.symbol == symbol:
+                    if deckCount < deck.count:
+                        deckCount = deck.count
+            count += deckCount
         return count
 
-    def calculateDeckWildCard(self, deck):
+    def calculateDeckWildCard(self, deckName):
         count = 0
         for cardDetail in self.cardList:
-            if deck in cardDetail.deck:
-                count += cardDetail.count
+            deckCount = 0
+            for deck in cardDetail.deck:
+                if deck.name == deckName:
+                    if deckCount < deck.count:
+                        deckCount = deck.count
+            count += deckCount
         return count
     
     def inputNumber(self, prompt):
@@ -47,24 +59,21 @@ class WildCounter:
         print(prompt, end="")
         return input()
 
-    def inputCard(self, card, count, deck):
+    def inputCard(self, card, deck):
         cardCount = len(self.cards)
         self.cards.add(card)
         if cardCount != len(self.cards):
-            self.cardList.append(CardDetail(card, count, deck))
+            self.cardList.append(CardDetail(card, deck))
             return
         else:
             for cardDetail in self.cardList:
                 if cardDetail.isIncludedCard(card):
-                    self.updateCardDetail(cardDetail, count, deck)
+                    self.updateCardDetail(cardDetail, deck)
                     return
 
-    def updateCardDetail(self, cardDetail, newCount, newDeck):
+    def updateCardDetail(self, cardDetail, newDeck):
         self.cardList.remove(cardDetail)
-        if cardDetail.count < newCount:
-            cardDetail.updateCount(newCount)
-        if newDeck not in cardDetail.deck:
-            cardDetail.updateDeck(newDeck)
+        cardDetail.updateDeck(newDeck)
         self.cardList.append(cardDetail)
 
     def printCardList(self):
