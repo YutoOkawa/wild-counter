@@ -62,3 +62,14 @@ class WildCounterTest(unittest.TestCase):
 
         # THEN
         assert wc.cardList[0] == expectedCardDetail
+
+    def test_calculateWildCard(unittest):
+        # GIVEN
+        wc = WildCounter()
+        wc.cardList = [CardDetail(Card("test_name", "test_symbol"), 4, "deck"), CardDetail(Card("test_name", "test_symbol"), 2, "deck")]
+
+        # WHEN
+        count = wc.calculateWildCard()
+
+        # THEN
+        assert count == 6

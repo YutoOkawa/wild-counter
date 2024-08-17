@@ -9,6 +9,12 @@ class WildCounter:
 
     def printStandardFormat(self):
         print("スタンダードフォーマット:", self.symbol)
+
+    def calculateWildCard(self):
+        count = 0
+        for cardDetail in self.cardList:
+            count += cardDetail.count
+        return count
     
     def inputNumber(self, prompt):
         while True:
@@ -39,8 +45,8 @@ class WildCounter:
         while True:
             # TODO: validation
             name = self.inputString("カード名を入力してください: ")
-            symbol = self.inputString("シンボルを入力してください: ")
             self.printStandardFormat()
+            symbol = self.inputString("シンボルを入力してください: ")
             count = self.inputNumber("枚数を入力してください: ")
             card = Card(name, symbol)
             deck = self.inputString("デッキ名を入力してください: ")
@@ -49,3 +55,4 @@ class WildCounter:
                 break
         print("WildCounter finished")
         self.printCardList()
+        print("WildCard数:", self.calculateWildCard())
