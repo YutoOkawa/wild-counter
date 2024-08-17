@@ -1,5 +1,6 @@
 from wildCounter import WildCounter
 from Card import Card
+from Deck import Deck
 import csv
 
 if __name__ == "__main__":
@@ -9,7 +10,8 @@ if __name__ == "__main__":
         reader = csv.reader(f)
         for row in reader:
             card = Card(row[0], row[1])
-            wc.inputCard(card, int(row[2]), row[3])
+            deck = Deck(row[3], int(row[2]))
+            wc.inputCard(card, deck)
 
     print("WildCounter finished")
     wc.printCardList()

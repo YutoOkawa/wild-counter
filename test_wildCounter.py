@@ -1,6 +1,7 @@
 from wildCounter import WildCounter
 from CardDetail import CardDetail
 from Card import Card
+from Deck import Deck
 import unittest
 import sys
 import io
@@ -55,10 +56,11 @@ class WildCounterTest(unittest.TestCase):
         # GIVEN
         wc = WildCounter()
         expectedCard = Card("test_name", "test_symbol")
-        expectedCardDetail = CardDetail(expectedCard, 4, "deck")
+        expectedDeck = Deck("deck", 4)
+        expectedCardDetail = CardDetail(expectedCard, expectedDeck)
 
         # WHEN
-        wc.inputCard(expectedCard, 4, "deck")
+        wc.inputCard(expectedCard, expectedDeck)
 
         # THEN
         assert wc.cardList[0] == expectedCardDetail
@@ -67,7 +69,7 @@ class WildCounterTest(unittest.TestCase):
     def test_calculateWildCard(unittest):
         # GIVEN
         wc = WildCounter()
-        wc.cardList = [CardDetail(Card("test_name", "test_symbol"), 4, "deck"), CardDetail(Card("test_name", "test_symbol"), 2, "deck")]
+        wc.cardList = [CardDetail(Card("test_name", "test_symbol"), Deck("deck", 4)), CardDetail(Card("test_name", "test_symbol"), Deck("deck", 2))]
 
         # WHEN
         count = wc.calculateWildCard()
@@ -75,25 +77,10 @@ class WildCounterTest(unittest.TestCase):
         # THEN
         assert count == 6
 
-    def test_inputCard_should_update_count_when_card_counter_is_upper_than_carddetails(unittest):
-        # GIVEN
-        wc = WildCounter()
-        testCard = Card("test_name", "test_symbol")
-        testCard1 = Card("test1_name", "test1_symbol")
-        wc.inputCard(testCard, 2, "deck")
-        wc.inputCard(testCard1, 2, "deck")
-
-        # WHEN
-        wc.inputCard(Card("test_name", "test_symbol"), 3, "deck")
-
-        # THEN
-        count = wc.calculateWildCard()
-        assert count == 5
-
     def test_calculateSymbolWildCard(unittest):
         # GIVEN
         wc = WildCounter()
-        wc.cardList = [CardDetail(Card("test_name", "DMU"), 4, "deck"), CardDetail(Card("test_name", "BRO"), 2, "deck")]
+        wc.cardList = [CardDetail(Card("test_name", "DMU"), Deck("deck", 4)), CardDetail(Card("test_name", "BRO"), Deck("deck", 2))]
 
         # WHEN
         dmuCount = wc.calculateSymbolWildCard("DMU")
@@ -106,7 +93,7 @@ class WildCounterTest(unittest.TestCase):
     def test_calculateDeckWildCard(unittest):
         # GIVEN
         wc = WildCounter()
-        wc.cardList = [CardDetail(Card("test_name", "DMU"), 4, "deck"), CardDetail(Card("test_name", "BRO"), 2, "deck")]
+        wc.cardList = [CardDetail(Card("test_name", "DMU"), Deck("deck", 4)), CardDetail(Card("test_name", "BRO"), Deck("deck", 2))]
 
         # WHEN
         deckCount = wc.calculateDeckWildCard("deck")
@@ -117,13 +104,12 @@ class WildCounterTest(unittest.TestCase):
     def test_updateCardDetail(unittest):
         # GIVEN
         wc = WildCounter()
-        wc.inputCard(Card("test_name", "test_symbol"), 2, "deck")
-        testCardDetail = CardDetail(Card("test_name", "test_symbol"), 2, "deck")
+        wc.inputCard(Card("test_name", "test_symbol"), Deck("deck", 2))
+        testCardDetail = CardDetail(Card("test_name", "test_symbol"), Deck("deck", 2))
+        testNewDeck = Deck("new_deck", 2)
 
         # WHEN
-        wc.updateCardDetail(testCardDetail, 3, "new_deck")
+        wc.updateCardDetail(testCardDetail, testNewDeck)
 
         # THEN
-        count = wc.calculateWildCard()
-        assert count == 3
-        assert wc.cardList[0].deck == ("deck", "new_deck")
+        assert wc.cardList[0].deck == (Deck("deck", 2), Deck("new_deck", 2))

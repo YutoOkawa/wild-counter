@@ -1,4 +1,5 @@
 from Card import Card
+from Deck import Deck
 from CardDetail import CardDetail
 import unittest
 
@@ -6,18 +7,19 @@ class CardDetailTest(unittest.TestCase):
     def test_CardDetail(unittest):
         # GIVEN
         expectedCard = Card("test_name", "test_symbol")
+        expectedDeck = Deck("test_deck", 4)
 
         # WHEN
-        cardDetail = CardDetail(Card("test_name", "test_symbol"), 4, "test_deck")
+        cardDetail = CardDetail(expectedCard, expectedDeck)
 
         assert cardDetail.card == expectedCard
-        assert cardDetail.count == 4
-        assert cardDetail.deck == ("test_deck",)
+        assert cardDetail.deck == (expectedDeck,)
 
     def test_CardDetail_isIncludedCard(unittest):
         # GIVEN
         expectedCard = Card("test_name", "test_symbol")
-        cardDetail = CardDetail(Card("test_name", "test_symbol"), 4, "test_deck")
+        expectedDeck = Deck("test_deck", 4)
+        cardDetail = CardDetail(expectedCard, expectedDeck)
 
         # WHEN
         isIncluded = cardDetail.isIncludedCard(expectedCard)
@@ -27,7 +29,7 @@ class CardDetailTest(unittest.TestCase):
 
     def test_CardDetail_updateCount(unittest):
         # GIVEN
-        cardDetail = CardDetail(Card("test_name", "test_symbol"), 2, "deck")
+        cardDetail = CardDetail(Card("test_name", "test_symbol"), Deck("test_deck", 2))
 
         # WHEN
         cardDetail.updateCount(3)
@@ -37,10 +39,12 @@ class CardDetailTest(unittest.TestCase):
 
     def test_updateDeck(unittest):
         # GIVEN
-        cardDetail = CardDetail(Card("test_name", "test_symbol"), 2, "deck")
+        initDeck = Deck("deck", 2)
+        cardDetail = CardDetail(Card("test_name", "test_symbol"),initDeck)
+        appendDeck = Deck("new_deck", 2)
 
         # WHEN
-        cardDetail.updateDeck("new_deck")
+        cardDetail.updateDeck(appendDeck)
 
         # THEN
-        assert cardDetail.deck == ("deck", "new_deck")
+        assert cardDetail.deck == (initDeck, appendDeck)
