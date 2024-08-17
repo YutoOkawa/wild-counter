@@ -5,6 +5,7 @@ import pprint
 class WildCounter:
     def __init__(self):
         self.cardList = []
+        self.cards = set()
         self.symbol = ["DMU", "BRO", "ONE", "MOM", "MAT", "WOE", "LCI", "MKM", "OTJ", "BIG", "BLB"]
 
     def printStandardFormat(self):
@@ -33,8 +34,16 @@ class WildCounter:
         return input()
 
     def inputCard(self, card, count, deck):
-        cardDetail = CardDetail(card, count, deck)
-        self.cardList.append(cardDetail)
+        cardCount = len(self.cards)
+        self.cards.add(card)
+        if cardCount != len(self.cards):
+            self.cardList.append(CardDetail(card, count, deck))
+            return
+        else:
+            for cardDetail in self.cardList:
+                if cardDetail.isIncludedCard(card) and cardDetail.count < count:
+                    cardDetail.updateCount(count)
+                    return
 
     def printCardList(self):
         for cardDetail in self.cardList:

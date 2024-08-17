@@ -62,6 +62,7 @@ class WildCounterTest(unittest.TestCase):
 
         # THEN
         assert wc.cardList[0] == expectedCardDetail
+        assert wc.cards == {expectedCard}
 
     def test_calculateWildCard(unittest):
         # GIVEN
@@ -73,3 +74,18 @@ class WildCounterTest(unittest.TestCase):
 
         # THEN
         assert count == 6
+
+    def test_inputCard_should_update_count_when_card_counter_is_upper_than_carddetails(unittest):
+        # GIVEN
+        wc = WildCounter()
+        testCard = Card("test_name", "test_symbol")
+        testCard1 = Card("test1_name", "test1_symbol")
+        wc.inputCard(testCard, 2, "deck")
+        wc.inputCard(testCard1, 2, "deck")
+
+        # WHEN
+        wc.inputCard(Card("test_name", "test_symbol"), 3, "deck")
+
+        # THEN
+        count = wc.calculateWildCard()
+        assert count == 5

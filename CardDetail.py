@@ -17,3 +17,6 @@ class CardDetail:
 
     def isIncludedCard(self, card):
         return self.card == card
+    
+    def updateCount(self, count):
+        self.count = count

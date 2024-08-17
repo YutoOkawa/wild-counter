@@ -24,3 +24,13 @@ class CardDetailTest(unittest.TestCase):
 
         # THEN
         assert isIncluded == True
+
+    def test_CardDetail_updateCount(self):
+        # GIVEN
+        cardDetail = CardDetail(Card("test_name", "test_symbol"), 2, "deck")
+
+        # WHEN
+        cardDetail.updateCount(3)
+
+        # THEN
+        assert cardDetail.count == 3
